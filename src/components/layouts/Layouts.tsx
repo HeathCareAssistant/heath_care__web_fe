@@ -32,10 +32,12 @@ const Layout = () => {
     useLocale()
 
     const AppLayout = useMemo(() => {
-        if (authenticated) {
-            return layouts[layoutType]
+        if (!authenticated && layoutType === LAYOUT_TYPE_SIMPLE) {
+            return layouts[LAYOUT_TYPE_SIMPLE]
         }
-        return lazy(() => import('./AuthLayout'))
+        return authenticated
+            ? layouts[layoutType]
+            : lazy(() => import('./AuthLayout'))
     }, [layoutType, authenticated])
 
     return (
