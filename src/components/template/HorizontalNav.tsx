@@ -1,6 +1,6 @@
-import HorizontalMenuContent from './HorizontalMenuContent'
-import useResponsive from '@/utils/hooks/useResponsive'
 import { useAppSelector } from '@/store'
+import useResponsive from '@/utils/hooks/useResponsive'
+import HorizontalMenuContent from './HorizontalMenuContent'
 
 const HorizontalNav = () => {
     const mode = useAppSelector((state) => state.theme.mode)
