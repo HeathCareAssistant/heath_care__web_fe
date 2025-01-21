@@ -28,3 +28,5 @@ build
 .env
 .pnp.*
 .pnp.js
+yarn.lock
+package-lock.json
