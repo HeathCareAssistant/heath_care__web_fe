@@ -41,7 +41,7 @@ const SearchWrapper = () => {
     }
 
     return (
-        <div className="w-full max-w-4xl mx-auto p-4">
+        <div className="w-full max-w-4xl mx-auto p-2 md:p-8">
             {/* Alphabet Navigation */}
             <div className="flex flex-auto flex-wrap md:flex-nowrap justify-center gap-2 mb-6">
                 {alphabet.map((letter) => (
@@ -67,12 +67,11 @@ const SearchWrapper = () => {
                 />
                 <Search className="absolute right-0 top-1/2 transform -translate-y-1/2 text-gray-500 justify-center flex items-center" />
             </div>
-
             {/* Tab Navigation */}
-            <div className="flex flex-auto overflow-hidden w-full">
+            <div className="flex flex-auto overflow-hidden w-auto md:w-full">
                 <Button
                     onClick={() => setActiveTab('name')}
-                    className={`flex-1 py-2 px-1 md:px-4 text-center ${
+                    className={`flex-auto py-2 !px-2 md:!px-4 text-center ${
                         activeTab === 'name'
                             ? 'bg-white text-emerald-700'
                             : 'bg-gray-100 text-gray-700'
@@ -82,8 +81,8 @@ const SearchWrapper = () => {
                 </Button>
                 <Button
                     onClick={() => setActiveTab('ingredient')}
-                    className={`flex-1 py-2 px-1 md:px-4 text-center ${
-                        activeTab === 'ingredient'
+                    className={`flex-auto py-2 !px-2 md:!px-4 text-center ${
+                        activeTab === 'name'
                             ? 'bg-white text-emerald-700'
                             : 'bg-gray-100 text-gray-700'
                     }`}
@@ -92,8 +91,8 @@ const SearchWrapper = () => {
                 </Button>
                 <Button
                     onClick={() => setActiveTab('pharmaceutical')}
-                    className={`flex-1 py-2 px-1 md:px-4 text-center ${
-                        activeTab === 'pharmaceutical'
+                    className={`flex-auto py-2 !px-2 md:!px-4 text-center ${
+                        activeTab === 'name'
                             ? 'bg-white text-emerald-700'
                             : 'bg-gray-100 text-gray-700'
                     }`}
