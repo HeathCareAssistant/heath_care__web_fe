@@ -77,7 +77,7 @@ const CategorySection = memo(
             <AutoScroll
                 items={products}
                 overflow="hidden"
-                scrollDuration={50}
+                scrollDuration={30} // smaller value for faster scroll
                 itemHeight={80}
                 containerClassName="space-y-3 w-full max-w-min mx-auto p-4 max-h-[400px]"
                 onEndReached={onEndReached}
