@@ -1,6 +1,6 @@
 export type AppConfig = {
     apiPrefix: string
-    authenticatedEntryPath: string
+    authenticatedEntryPath: string[]
     unAuthenticatedEntryPath: string
     tourPath: string
     locale: string
@@ -9,7 +9,7 @@ export type AppConfig = {
 
 const appConfig: AppConfig = {
     apiPrefix: import.meta.env.VITE_DRUG_URL as string,
-    authenticatedEntryPath: '/dashboard',
+    authenticatedEntryPath: ['/admin', ''],
     unAuthenticatedEntryPath: '/home',
     tourPath: '/',
     locale: 'en',

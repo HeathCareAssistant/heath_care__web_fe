@@ -1,6 +1,6 @@
 import {
     LAYOUT_TYPE_BLANK,
-    LAYOUT_TYPE_SIMPLE,
+    LAYOUT_TYPE_SIMPLE
 } from '@/constants/theme.constant'
 import { useAppSelector } from '@/store'
 import View from '@/views'

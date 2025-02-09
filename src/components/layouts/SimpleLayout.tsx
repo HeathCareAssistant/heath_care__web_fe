@@ -32,7 +32,7 @@ const SimpleLayout = () => {
                         container
                         className="shadow dark:shadow-2xl"
                         headerStart={<HeaderActionsStart />}
-                        headerMiddle={<HorizontalNav />}
+                        // headerMiddle={<HorizontalNav />}
                         headerEnd={<HeaderActionsEnd />}
                     />
                     <View pageContainerType="contained" />
