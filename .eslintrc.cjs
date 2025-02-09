@@ -1,4 +1,12 @@
 /* eslint-disable no-undef */
+const globals = require('globals');
+const js = require('eslint-plugin-js');
+const react = require('eslint-plugin-react');
+const reactHooks = require('eslint-plugin-react-hooks');
+const reactRefresh = require('eslint-plugin-react-refresh');
+const eslintPluginPrettier = require('eslint-plugin-prettier');
+const imports = require('eslint-plugin-import');
+
 module.exports = [
     { ignores: ['dist', 'build', 'node_modules'] },
     {
