@@ -1,5 +1,13 @@
+import CategoriesWrapper from './home/wrapper/categories/categoriesWrapper'
+import SearchWrapper from './home/wrapper/search/searchWrapper'
+
 const Home = () => {
-    return <div>Home</div>
+    return (
+        <>
+            <SearchWrapper />
+            <CategoriesWrapper />
+        </>
+    )
 }
 
 export default Home
