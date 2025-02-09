@@ -1,15 +1,15 @@
-import { Suspense } from 'react'
-import Loading from '@/components/shared/Loading'
-import { protectedRoutes, publicRoutes } from '@/configs/routes.config'
-import appConfig from '@/configs/app.config'
-import PageContainer from '@/components/template/PageContainer'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import { useAppSelector } from '@/store'
+import type { LayoutType } from '@/@types/theme'
+import AppRoute from '@/components/route/AppRoute'
+import AuthorityGuard from '@/components/route/AuthorityGuard'
 import ProtectedRoute from '@/components/route/ProtectedRoute'
 import PublicRoute from '@/components/route/PublicRoute'
-import AuthorityGuard from '@/components/route/AuthorityGuard'
-import AppRoute from '@/components/route/AppRoute'
-import type { LayoutType } from '@/@types/theme'
+import Loading from '@/components/shared/Loading'
+import PageContainer from '@/components/template/PageContainer'
+import appConfig from '@/configs/app.config'
+import { protectedRoutes, publicRoutes } from '@/configs/routes.config'
+import { useAppSelector } from '@/store'
+import { Suspense } from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
 interface ViewsProps {
     pageContainerType?: 'default' | 'gutterless' | 'contained'
@@ -28,7 +28,9 @@ const AllRoutes = (props: AllRoutesProps) => {
             <Route path="/" element={<ProtectedRoute />}>
                 <Route
                     path="/"
-                    element={<Navigate replace to={authenticatedEntryPath} />}
+                    element={
+                        <Navigate replace to={authenticatedEntryPath[0]} />
+                    } // Use the first entry path
                 />
                 {protectedRoutes.map((route, index) => (
                     <Route
@@ -58,11 +60,13 @@ const AllRoutes = (props: AllRoutesProps) => {
                         key={route.path}
                         path={route.path}
                         element={
-                            <AppRoute
-                                routeKey={route.key}
-                                component={route.component}
-                                {...route.meta}
-                            />
+                            <PageContainer {...props} {...route.meta}>
+                                <AppRoute
+                                    routeKey={route.key}
+                                    component={route.component}
+                                    {...route.meta}
+                                />
+                            </PageContainer>
                         }
                     />
                 ))}
