@@ -17,7 +17,7 @@ const Cover = ({ children, content, ...rest }: CoverProps) => {
                     backgroundImage: `url('/img/others/auth-cover-bg.jpg')`,
                 }}
             >
-                <Logo mode="dark" />
+                <Logo mode="light" textColor="white" />
                 {/* <div>
                     <h3 className="text-white mb-4">
                         Jump start your project with PROJECT_NAME

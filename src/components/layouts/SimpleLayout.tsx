@@ -1,6 +1,5 @@
 import Header from '@/components/template/Header'
 import HeaderLogo from '@/components/template/HeaderLogo'
-import HorizontalNav from '@/components/template/HorizontalNav'
 import MobileNav from '@/components/template/MobileNav'
 import UserDropdown from '@/components/template/UserDropdown'
 import View from '@/views'
