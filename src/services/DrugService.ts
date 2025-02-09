@@ -17,22 +17,25 @@ export interface GetDrugsNameResponse {
     }[]
 }
 
-export type ROUTE = {
-    route: 'listId' | 'product-list' | 'thuoc'
-}
+export type ROUTE = 'listId' | 'product-list' | 'thuoc'
 
 export const apiGetDrugs = async (route: ROUTE) => {
     return ApiService.fetchData<GetDrugsIdResponse | GetDrugsNameResponse>({
-        url: '/api.php',
+        url: `/api.php`,
         method: 'get',
-        params: route,
+        params: {
+            route: route,
+        },
     })
 }
 
 export const apiGetDrug = async (route: ROUTE, id: string) => {
     return ApiService.fetchData<Drug>({
-        url: '/api.php',
+        url: `/api.php`,
         method: 'get',
-        params: { route, id },
+        params: {
+            route: route,
+            id: id,
+        },
     })
 }

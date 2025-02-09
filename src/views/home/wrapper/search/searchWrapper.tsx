@@ -1,6 +1,7 @@
 import Search from '@/components/template/Search'
 import { Button, Input } from '@/components/ui'
-import { useState } from 'react'
+import { apiGetDrug, apiGetDrugs } from '@/services/DrugService'
+import { useEffect, useRef, useState } from 'react'
 
 const alphabet = [
     'A',
@@ -35,10 +36,30 @@ const alphabet = [
 const SearchWrapper = () => {
     const [searchTerm, setSearchTerm] = useState<string>('')
     const [activeTab, setActiveTab] = useState<string>('name')
+    const [id, setId] = useState<string>('')
+    const initialLoadRef = useRef<boolean>(true)
+
+    const fetchDrugs = async () => {
+        const res = await apiGetDrugs('product-list')
+        console.log('🚀 ~ fetchDrugs ~ res:', res)
+    }
+
+    const fetchDrug = async () => {
+        const res = await apiGetDrug('thuoc', id)
+        console.log('🚀 ~ fetchDrug ~ res:', res)
+    }
 
     const handleSearchWithAlphabet = (letter: string) => {
         setSearchTerm(letter)
     }
+
+    useEffect(() => {
+        if (initialLoadRef.current) {
+            fetchDrugs()
+            fetchDrug()
+            initialLoadRef.current = false
+        }
+    }, [])
 
     return (
         <div className="w-full max-w-4xl mx-auto p-2 md:p-8">
