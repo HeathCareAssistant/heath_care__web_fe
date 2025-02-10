@@ -14,6 +14,23 @@ export const publicRoutes: Routes = [
         authority: [],
         meta: {},
     },
+    // PRODUCT
+    // {
+    //     key: 'product',
+    //     path: '/product',
+    //     component: lazy(() => import('@/views/product/Product')),
+    //     authority: [],
+    //     meta: {},
+    // },
+    {
+        key: 'product_detail',
+        path: '/product_detail/:id',
+        component: lazy(
+            () => import('@/views/product/productDetail/ProductDetail'),
+        ),
+        authority: [],
+        meta: {},
+    },
 ]
 
 export const protectedRoutes = [

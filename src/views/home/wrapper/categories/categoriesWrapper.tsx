@@ -1,4 +1,5 @@
 import { useState, memo, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 import AutoScroll from '@/components/shared/AutoScroll'
 
 interface Product {
@@ -38,19 +39,32 @@ const CATEGORIES = [
     },
 ]
 
-// Memoized ProductCard component
-const ProductCard = memo(({ product }: { product: Product }) => (
-    <div className="p-2 transition-shadow hover:shadow-md rounded-md">
-        <h2 className="text-xs md:text-base font-semibold mb-2 md:whitespace-nowrap text-gray-800">
-            {product.name}
-        </h2>
-        <p className="text-gray-600 text-sm">{product.description}</p>
-    </div>
-))
+// Memoized ProductCard component with enhanced responsiveness
+const ProductCard = memo(({ product }: { product: Product }) => {
+    const navigate = useNavigate()
+
+    const handleCardClick = () => {
+        navigate(`/product_detail/${product.name}`)
+    }
+
+    return (
+        <div
+            className="p-3 transition-all duration-300 hover:shadow-sm rounded-lg bg-white md:text-nowrap cursor-pointer"
+            onClick={handleCardClick}
+        >
+            <h2 className="text-xs sm:text-sm md:text-base font-semibold mb-2 line-clamp-2 text-gray-800">
+                {product.name}
+            </h2>
+            <p className="text-gray-600 text-xs sm:text-sm line-clamp-2">
+                {product.description}
+            </p>
+        </div>
+    )
+})
 
 ProductCard.displayName = 'ProductCard'
 
-// Memoized CategorySection component
+// Memoized CategorySection component with improved layout
 const CategorySection = memo(
     ({
         title,
@@ -63,32 +77,32 @@ const CategorySection = memo(
         products: Product[]
         onEndReached: () => void
     }) => (
-        <div className="min-w-[300px] rounded-lg p-4">
-            <div className="flex justify-center items-center">
-                <span role="img" aria-label="icon">
+        <div className="w-full sm:w-64 md:w-72 lg:w-80 xl:w-96 bg-gray-50 rounded-xl p-4 shadow-sm">
+            <div className="flex items-center gap-2 px-2 mb-3">
+                <span role="img" aria-label="icon" className="text-xl">
                     {icon}
                 </span>
-                <h2 className="text-sm md:text-lg font-semibold md:whitespace-nowrap text-gray-700 w-full">
+                <h2 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-700 truncate">
                     {title}
                 </h2>
             </div>
-            {/* Divider */}
-            <hr className="border-t border-gray-200 mb-2" />
-            <AutoScroll
-                items={products}
-                overflow="hidden"
-                scrollDuration={30} // smaller value for faster scroll
-                itemHeight={80}
-                containerClassName="space-y-3 w-full max-w-min mx-auto p-4 max-h-[400px]"
-                onEndReached={onEndReached}
-            >
-                {products.map((product, index) => (
-                    <ProductCard
-                        key={`${product.name}-${index}`}
-                        product={product}
-                    />
-                ))}
-            </AutoScroll>
+            <div className="bg-white rounded-lg shadow-inner">
+                <AutoScroll
+                    items={products}
+                    overflow="hidden"
+                    scrollDuration={30}
+                    itemHeight={80}
+                    containerClassName="space-y-3 w-full p-3 max-h-[60vh]"
+                    onEndReached={onEndReached}
+                >
+                    {products.map((product, index) => (
+                        <ProductCard
+                            key={`${product.name}-${index}`}
+                            product={product}
+                        />
+                    ))}
+                </AutoScroll>
+            </div>
         </div>
     ),
 )
@@ -103,16 +117,18 @@ const CategoriesWrapper = () => {
     }, [])
 
     return (
-        <div className="flex flex-col md:flex-row justify-center gap-6 px-4">
-            {CATEGORIES.map((category) => (
-                <CategorySection
-                    key={category.id}
-                    title={category.title}
-                    icon={category.icon}
-                    products={products}
-                    onEndReached={handleEndReached}
-                />
-            ))}
+        <div className="w-full max-w-7xl mx-auto p-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {CATEGORIES.map((category) => (
+                    <CategorySection
+                        key={category.id}
+                        title={category.title}
+                        icon={category.icon}
+                        products={products}
+                        onEndReached={handleEndReached}
+                    />
+                ))}
+            </div>
         </div>
     )
 }
