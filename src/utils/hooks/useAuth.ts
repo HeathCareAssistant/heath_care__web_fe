@@ -1,18 +1,20 @@
+import type { SignInCredential, SignUpCredential } from '@/@types/auth'
+import appConfig from '@/configs/app.config'
+import { REDIRECT_URL_KEY } from '@/constants/app.constant'
 import { apiSignIn, apiSignOut, apiSignUp } from '@/services/AuthService'
 import {
     setUser,
     signInSuccess,
     signOutSuccess,
-    useAppSelector,
     useAppDispatch,
+    useAppSelector,
 } from '@/store'
-import appConfig from '@/configs/app.config'
-import { REDIRECT_URL_KEY } from '@/constants/app.constant'
 import { useNavigate } from 'react-router-dom'
 import useQuery from './useQuery'
-import type { SignInCredential, SignUpCredential } from '@/@types/auth'
 
 type Status = 'success' | 'failed'
+
+export const DEFAULT_USER = {}
 
 function useAuth() {
     const dispatch = useAppDispatch()

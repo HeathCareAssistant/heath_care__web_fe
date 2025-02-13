@@ -50,7 +50,6 @@ const Layout = () => {
         <Suspense
             fallback={
                 <div className="flex flex-auto flex-col h-screen items-center justify-center">
-                    {' '}
                     {/* Center the loading */}
                     <Loading loading={true} />
                 </div>
